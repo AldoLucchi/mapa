@@ -24,8 +24,7 @@
             gap: 25%;
             width: 100%;
         }
-                /* Estilo del modal */
-                .modal {
+        .modal {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -135,9 +134,9 @@
                 <option value="san_agustin">San Agustin - Córdoba</option>
                 <option value="san_basilio">San Basilio - Córdoba</option>
                 <option value="san_francisco">San Francisco - Córdoba</option>
-                <option value="san_jose_de_la_dormida">San Jose-De-La-Dormida - Córdoba</option>
-                <option value="san_marcos_sud">San Jose-De-La-Dormida - Córdoba</option>
-                <option value="santa">San Jose-De-La-Dormida - Córdoba</option>
+                <option value="san_jose_de_la_dormida">San Jose de LaDormida Córdoba</option>
+                <option value="san_marcos_sud">San Marcos</option>
+                <option value="santa">Santa Rosa de Río Primero</option>
                 <option value="serrano">Serrano - Córdoba</option>
                 <option value="suco">Suco - Córdoba</option>
                 <option value="ticino">Ticino - Córdoba</option>
@@ -156,61 +155,253 @@
     <div id="map"></div>
 
     <script>
-        // Coordenadas de las sucursales
         const locations = {
             rio_primero: { 
                 lat: -31.36448, 
                 lng: -63.5983897, 
                 sucursal: `
-                    <h1>Río Primero</h1>
-                    <p>Dirección: Calle Ficticia 123</p>
-                    <p>Teléfono: +54 123 456 789</p>
-                    <p>Email: contacto@rioprimero.com</p>
-                    <a href="https://www.rio-primero.com" target="_blank">Visitar sitio web</a>
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
                 `
             },
             adelia_maria: { 
                 lat: -33.63424, 
                 lng: -64.02489, 
                 sucursal: `
-                    <h1>Adelia María</h1>
-                    <p>Dirección: Calle Real 456</p>
-                    <p>Teléfono: +54 987 654 321</p>
-                    <p>Email: contacto@adeliamaria.com</p>
-                    <a href="https://www.adelia-maria.com" target="_blank">Visitar sitio web</a>
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
                 `
             },
-            alcira: { lat: -32.755, lng: -64.32918 },
-            alejandro: { lat: -33.35857, lng: -63.71419 },
-            alejo: { lat: -33.60676, lng: -62.6217 },
-            alta_gracia: { lat: -31.66395, lng: -64.42202 },
-            arias: { lat: -33.62706, lng: -62.39666 },
-            arroyito: { lat: -31.42367, lng: -63.04019 },
-            bell_ville: { lat: -32.61048, lng: -62.69424 },
-            bengolea: { lat: -33.02566, lng: -63.66973 },
-            berrotaran: { lat: -32.46158, lng: -64.38186 },
-            brinkmann: { lat: -30.8703, lng: -62.03045 },
-            calchin: { lat: -31.66547, lng: -63.19376 },
-            camilo: { lat: -31.66547, lng: -63.19376 },
-            canals: { lat: -33.56795, lng: -62.87924 },
-            charras: { lat: -33.0260747, lng: -64.0472481 },
-            colazo: { lat: -31.96693921663711, lng: -63.38205210594836 },
-            colonia_caroya: { lat: -31.0325543, lng: -64.0485657 },
+            alcira: { lat: -32.755, lng: -64.32918, 
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+            },
+            alejandro: { lat: -33.35857, lng: -63.71419, 
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            alejo: { lat: -33.60676, lng: -62.6217,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            alta_gracia: { lat: -31.66395, lng: -64.42202,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            arias: { lat: -33.62706, lng: -62.39666,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            arroyito: { lat: -31.42367, lng: -63.04019,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            bell_ville: { lat: -32.61048, lng: -62.69424,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            bengolea: { lat: -33.02566, lng: -63.66973,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            berrotaran: { lat: -32.46158, lng: -64.38186,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            brinkmann: { lat: -30.8703, lng: -62.03045,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            calchin: { lat: -31.66547, lng: -63.19376,                
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                ` },
+            canals: { lat: -33.56795, lng: -62.87924,                 
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                ` },
+            charras: { lat: -33.0260747, lng: -64.0472481,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            colazo: { lat: -31.96693921663711, lng: -63.38205210594836,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            colonia_caroya: { lat: -31.0325543, lng: -64.0485657,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
             cordoba: [
-                { lat: -31.39684, lng: -64.12398 }, // Punto 6
-                { lat: -31.34512, lng: -64.26283 }, // Punto 1
-                { lat: -31.37505, lng: -64.17671 }, // Punto 2
-                { lat: -31.418863984302504, lng: -64.19343751287556 }, // Punto 3
-                { lat: -31.43478, lng: -64.13395 }, // Punto 4
-                { lat: -31.39311, lng: -64.152 }, // Punto 5
-                { lat: -31.351619087974672, lng: -63.96720646202746 }, // Punto 7
-                { lat: -31.34427, lng: -63.94011 }, // Punto 8
-                // { lat: -31.30349, lng: -63.75835 },  // Punto 9
-                // { lat: -31.32661, lng: -63.62505 }, // Punto 10
-                // { lat: -31.33004, lng: -63.61961 }, // Punto 11
+                { lat: -31.39684, lng: -64.12398,                 
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                ` },
+                { lat: -31.34512, lng: -64.26283, 
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
+                { lat: -31.37505, lng: -64.17671,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
+                { lat: -31.418863984302504, lng: -64.19343751287556,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
+                { lat: -31.43478, lng: -64.13395,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
+                { lat: -31.39311, lng: -64.152,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
+                { lat: -31.351619087974672, lng: -63.96720646202746,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
+                { lat: -31.34427, lng: -63.94011,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
             ],
-            coronel: { lat: -33.62988, lng: -64.59547 },
-            corral: { lat: -33.29001, lng: -62.18953 },
+            coronel: { lat: -33.62988, lng: -64.59547,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
+            corral: { lat: -33.29001, lng: -62.18953,
+                sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+             },
             cruz: { lat: -33.00261, lng: -61.80427 },
             dalmacio: { lat: -32.6108539, lng: -63.5822204 },
             despeñaderos: {},
@@ -224,9 +415,32 @@
             general_viamonte: {lat: -33.74583, lng: -63.10222},
             gutimozin: { lat: -33.46528, lng: -62.43559 },
             hernando: [
-                { lat: -32.422005662641915, lng: -63.73497883419869 },
-                { lat: -32.421772946414244, lng: -63.7344312910197 },
-                { lat: -32.42115, lng: -63.7285 },
+                { lat: -32.422005662641915, lng: -63.73497883419869,                 
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                ` },
+                { lat: -32.421772946414244, lng: -63.7344312910197,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
+                { lat: -32.42115, lng: -63.7285,
+                    sucursal: `
+                    <h3>DISTRIBUIDORA COR-VIG</h3>
+                    <p><b>Dirección:</b> RUTA 10 KM 66<br>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=(-31.364286931040105,%20-63.59834359456749)" target="_blank">Como llegar</a></p>
+                    <p><b>Teléfono:</b> 0351-153110054</p>
+                    <p><b>Email:</b> gbenintendi@corvig.com.ar</p>
+                `
+                 },
             ],
             huinca: { lat: -34.85008, lng: -64.36667 },
             idiazabal: { lat: -32.8162766, lng: -63.0334158 },
@@ -326,7 +540,7 @@
                 { lat: -32.164973227543136, lng: -63.46113204790815 },
                 { lat: -32.164973227543136, lng: -63.46113204790815 },
             ],
-            santa: { lat: -32.164973227543136, lng: -63.46113204790815 },
+            santa: { lat: -31.15603, lng: -63.40815 },
             serrano: { lat: -34.47649, lng: -63.53278 },
             suco: { lat: -33.43908, lng: -64.82951 },
             ticino: { lat: -32.6901446, lng: -63.4365412 },
@@ -355,225 +569,292 @@
             villa_nueva: { lat: -32.444092269761846, lng: -63.24285486304802 },
 
         };
-
         let map = L.map('map', {
             scrollWheelZoom: false // Desactiva el zoom con la rueda del ratón
         }).setView(locations.rio_primero, 14);
-
-        // Cargar el mapa de OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
-        // Inicializar el marcador
         let marker = L.marker(locations.rio_primero).addTo(map);
-
-        // Función para cambiar la ubicación del marcador y el centro del mapa
         function changeLocation(location) {
             const selectedLocation = locations[location];
 
             if (location === "cordoba") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 12); // Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 12); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "general") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 12); // Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 12); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "hernando") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENORZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 14); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "jesus_maria") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 12);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 12); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "justiniano") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 14); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "laboulaye") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "leones") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 14); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "los_surgentes") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 15);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 14); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "marcos_juarez") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "mattaldi") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "monte_cristo") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "monte_maiz") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "morteros") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "oncativo") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "pilar") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "portena") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "pozo") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "rio_cuarto") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 12);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 12); // Centrar el mapa en la primera coordenada
             }
             
             else if (location === "rio_tercero") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "rio_francisco") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 14); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "vicuna_mackenna") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 14); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "villa_del_rosario") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 14); // Centrar el mapa en la primera coordenada
             }
 
             else if (location === "villa_maria") {
                 selectedLocation.forEach(coord => {
-                    L.marker(coord).addTo(map);
+                    // Crear el marcador para cada coordenada
+                    const marker = L.marker([coord.lat, coord.lng]).addTo(map);
+
+                    // Usar el contenido de 'sucursal' para el popup
+                    marker.bindPopup(coord.sucursal); // Aquí se pasa el HTML que está en 'sucursal'
                 });
-                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+                map.setView(selectedLocation[0], 13); // Centrar el mapa en la primera coordenada
             }
 
             else {
-                // En otras ubicaciones, solo cambia un marcador
-                map.setView(selectedLocation, 14); // Cambia el centro y el zoom del mapa a un zoom más cercano
-                marker.setLatLng(selectedLocation); // Cambia la posición del marcador
+                map.setView(selectedLocation, 14);
+                marker.setLatLng(selectedLocation);
             }
         }
-
-        // Evento para cambiar la sucursal al seleccionar una opción
         document.getElementById("sucursalSelect").addEventListener("change", function() {
             const selectedValue = this.value;
             changeLocation(selectedValue);
         });
-
-        console.table(locations);
-        // Agregar marcadores al mapa y almacenarlos
         const markers = {}; // Un objeto para almacenar los marcadores
         Object.keys(locations).forEach(locationKey => {
             const location = locations[locationKey];
             const marker = L.marker([location.lat, location.lng]).addTo(map);
             marker._id = locationKey; // Guardamos un identificador para cada marcador
-
-            // Agregar la clase personalizada
             marker._icon.classList.add('leaflet-marker-icon', 'leaflet-zoom-animated', 'leaflet-interactive');
-
-            // Asociar la información que se mostrará al hacer clic usando la variable 'sucursal'
             marker.bindPopup(location.sucursal);
-            
-            // Almacenar el marcador en el objeto
             markers[locationKey] = marker;
         });
-
-        // Funcionalidad para que al hacer clic en el select se muestre la ubicación correspondiente
         document.getElementById('ubicaciones').addEventListener('change', function () {
             const selectedOption = this.value; // Obtener el valor seleccionado
             const selectedLocation = locations[selectedOption];
-            
             if (selectedLocation) {
-                // Mover el mapa a la ubicación seleccionada
-                map.setView([selectedLocation.lat, selectedLocation.lng], 13);
-
-                // Mostrar el popup de la ubicación seleccionada
+                map.setView([selectedLocation.lat, selectedLocation.lng,], 13);
                 const selectedMarker = markers[selectedOption]; // Obtener el marcador de la ubicación seleccionada
                 selectedMarker.openPopup(); // Abrir el popup del marcador seleccionado
             }
