@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa de Sucursales</title>
+    <!-- Incluir la librería Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <style>
@@ -58,13 +59,8 @@
     </style>
 </head>
 <body>
-    <div id="modal" class="modal">
-        <button class="modal-close" onclick="closeModal()">Cerrar</button>
-        <h3>Información de la Ubicación</h3>
-        <p><strong>Latitud:</strong> <span id="lat"></span></p>
-        <p><strong>Longitud:</strong> <span id="lng"></span></p>
-    </div>
     <h1 style="text-align: center;">Buscador de Servicios Oficiales</h1>
+
     <div class="container">
         <div class="select-container">
             <label for="sucursalSelect">Seleccione una opción:</label>
@@ -158,11 +154,32 @@
         </div>
     </div>
     <div id="map"></div>
+
     <script>
         // Coordenadas de las sucursales
         const locations = {
-            rio_primero: { lat: -31.36448, lng:  -63.5983897},
-            adelia_maria: { lat: -33.63424, lng: -64.02489 },
+            rio_primero: { 
+                lat: -31.36448, 
+                lng: -63.5983897, 
+                sucursal: `
+                    <h1>Río Primero</h1>
+                    <p>Dirección: Calle Ficticia 123</p>
+                    <p>Teléfono: +54 123 456 789</p>
+                    <p>Email: contacto@rioprimero.com</p>
+                    <a href="https://www.rio-primero.com" target="_blank">Visitar sitio web</a>
+                `
+            },
+            adelia_maria: { 
+                lat: -33.63424, 
+                lng: -64.02489, 
+                sucursal: `
+                    <h1>Adelia María</h1>
+                    <p>Dirección: Calle Real 456</p>
+                    <p>Teléfono: +54 987 654 321</p>
+                    <p>Email: contacto@adeliamaria.com</p>
+                    <a href="https://www.adelia-maria.com" target="_blank">Visitar sitio web</a>
+                `
+            },
             alcira: { lat: -32.755, lng: -64.32918 },
             alejandro: { lat: -33.35857, lng: -63.71419 },
             alejo: { lat: -33.60676, lng: -62.6217 },
@@ -179,7 +196,18 @@
             charras: { lat: -33.0260747, lng: -64.0472481 },
             colazo: { lat: -31.96693921663711, lng: -63.38205210594836 },
             colonia_caroya: { lat: -31.0325543, lng: -64.0485657 },
-            cordoba: [{ lat: -31.39684, lng: -64.12398 }, { lat: -31.34512, lng: -64.26283 }, { lat: -31.37505, lng: -64.17671 }, { lat: -31.418863984302504, lng: -64.19343751287556 }, { lat: -31.43478, lng: -64.13395 }, { lat: -31.39311, lng: -64.152 }, { lat: -31.351619087974672, lng: -63.96720646202746 },{ lat: -31.34427, lng: -63.94011 }, // Punto 8
+            cordoba: [
+                { lat: -31.39684, lng: -64.12398 }, // Punto 6
+                { lat: -31.34512, lng: -64.26283 }, // Punto 1
+                { lat: -31.37505, lng: -64.17671 }, // Punto 2
+                { lat: -31.418863984302504, lng: -64.19343751287556 }, // Punto 3
+                { lat: -31.43478, lng: -64.13395 }, // Punto 4
+                { lat: -31.39311, lng: -64.152 }, // Punto 5
+                { lat: -31.351619087974672, lng: -63.96720646202746 }, // Punto 7
+                { lat: -31.34427, lng: -63.94011 }, // Punto 8
+                // { lat: -31.30349, lng: -63.75835 },  // Punto 9
+                // { lat: -31.32661, lng: -63.62505 }, // Punto 10
+                // { lat: -31.33004, lng: -63.61961 }, // Punto 11
             ],
             coronel: { lat: -33.62988, lng: -64.59547 },
             corral: { lat: -33.29001, lng: -62.18953 },
@@ -188,70 +216,115 @@
             despeñaderos: {},
             fortin: { lat: -31.97333, lng: -62.29776 },
             freyre: { lat: -31.17189, lng: -62.10027 },
-            general: [{ lat: -32.7768889, lng: -63.8221054 },{  lat: -32.7591, lng: -63.79562},
+            general: [
+                { lat: -32.7768889, lng: -63.8221054 },
+                {  lat: -32.7591, lng: -63.79562},
             ],
             general_levalle: { lat: -34.0075, lng: -63.92671},
             general_viamonte: {lat: -33.74583, lng: -63.10222},
             gutimozin: { lat: -33.46528, lng: -62.43559 },
-            hernando: [{ lat: -32.422005662641915, lng: -63.73497883419869 },{ lat: -32.421772946414244, lng: -63.7344312910197 },{ lat: -32.42115, lng: -63.7285 },
+            hernando: [
+                { lat: -32.422005662641915, lng: -63.73497883419869 },
+                { lat: -32.421772946414244, lng: -63.7344312910197 },
+                { lat: -32.42115, lng: -63.7285 },
             ],
             huinca: { lat: -34.85008, lng: -64.36667 },
             idiazabal: { lat: -32.8162766, lng: -63.0334158 },
             isla : { lat: -33.24133, lng: -62.40071 },
-            jesus_maria : [{ lat: -30.966658954077342, lng: -64.08272848214499 },{ lat: -30.99405, lng: -64.09935 },
+            jesus_maria : [
+                { lat: -30.966658954077342, lng: -64.08272848214499 },
+                { lat: -30.99405, lng: -64.09935 },
             ],
             jovita: { lat: -34.51484, lng: -63.94491 },
-            justiniano: [{ lat: -32.88763, lng: -62.67935 },{ lat: -32.89095, lng: -62.6808 },
+            justiniano: [
+                { lat: -32.88763, lng: -62.67935 },
+                { lat: -32.89095, lng: -62.6808 },
             ],
             lacarlota: { lat: -33.41507, lng: -63.28796 },
             lafrancia: { lat: -31.408092183303342, lng: -62.629787951641575 },
             lalaguna: { lat: -32.80311518399266, lng: -63.245136628926716 },
             lapaquita: { lat: -30.907527130459062, lng: -62.213924115298504 },
             lapara: { lat: -30.88918, lng: -62.99813 },
-            laboulaye: [{ lat: -34.12864469526903, lng: -63.3912337193152 },{ lat: -34.14674, lng: -63.39011 },
+            laboulaye: [
+                { lat: -34.12864469526903, lng: -63.3912337193152 },
+                { lat: -34.14674, lng: -63.39011 },
             ],
             laguna: { lat: -31.77546, lng: -63.79898 },
             las_junturas: { lat: -31.82519, lng: -63.44983 },
             las_perdices: { lat: -32.696, lng: -63.70585 },
             las_varillas: { lat: -31.866036502192863, lng: -62.720531076465264 },
-            leones: [{ lat: -32.65294, lng: -62.31567 },{ lat: -32.65458, lng: -62.29977 },
+            leones: [
+                { lat: -32.65294, lng: -62.31567 },
+                { lat: -32.65458, lng: -62.29977 },
             ],
-            los_surgentes: [{ lat: -32.98221, lng: -62.02674 },{ lat: -32.985867475604834, lng: -62.01772408569097 },
+            los_surgentes: [
+                { lat: -32.98221, lng: -62.02674 },
+                { lat: -32.985867475604834, lng: -62.01772408569097 },
             ],
             luque: { lat: -31.65047, lng: -63.34633 },
-            marcos_juarez: [{ lat: -32.6867, lng: -62.1089 },{ lat: -32.70049, lng: -62.1084 },
+            marcos_juarez: [
+                { lat: -32.6867, lng: -62.1089 },
+                { lat: -32.70049, lng: -62.1084 },
             ],
-            mattaldi: [{ lat: -34.479117047307454, lng: -64.17370625003173 },{ lat: -34.47916913813692, lng: -64.17160174628941 },
+            mattaldi: [
+                { lat: -34.479117047307454, lng: -64.17370625003173 },
+                { lat: -34.47916913813692, lng: -64.17160174628941 },
             ],
-            monte_cristo: [{ lat: -31.351619087974672, lng: -63.96720646202746 },{ lat: -31.34427, lng: -63.94011 },
+            monte_cristo: [
+                { lat: -31.351619087974672, lng: -63.96720646202746 },
+                { lat: -31.34427, lng: -63.94011 },
             ],
-            monte_maiz: [{ lat: -33.20264, lng: -62.60272 },{ lat: -33.20315, lng: -62.59022 },
+            monte_maiz: [
+                { lat: -33.20264, lng: -62.60272 },
+                { lat: -33.20315, lng: -62.59022 },
             ],
-            morteros: [{ lat: -30.6938, lng: -61.9982 },{ lat: -30.71658, lng: -62.0108138 },
+            morteros: [
+                { lat: -30.6938, lng: -61.9982 },
+                { lat: -30.71658, lng: -62.0108138 },
             ],
             noetinger: { lat: -32.36635, lng: -62.31439 },
             oliva: { lat: -32.04223, lng: -63.56631 },
-            oncativo: [{ lat: -31.9186419, lng: -63.6782704 },{ lat: -31.91161, lng: -63.67491 },{ lat: -31.92493, lng: -63.67976 },
+            oncativo: [
+                { lat: -31.9186419, lng: -63.6782704 },
+                { lat: -31.91161, lng: -63.67491 },
+                { lat: -31.92493, lng: -63.67976 },
             ],
             ordoñez: { lat: -32.84088740809211, lng: -62.86736777742349 },
-            pilar: [{ lat: -31.674091063505042, lng: -63.88855384695428 },{ lat: -31.67816, lng: -63.87864 },
+            pilar: [
+                { lat: -31.674091063505042, lng: -63.88855384695428 },
+                { lat: -31.67816, lng: -63.87864 },
             ],
             piquillin: { lat: -31.30349, lng: -63.75835 },
-            portena: [{ lat: -31.01421, lng: -62.06469 },{ lat: -31.01737669685668, lng: -62.06708951197601 },
+            portena: [
+                { lat: -31.01421, lng: -62.06469 },
+                { lat: -31.01737669685668, lng: -62.06708951197601 },
             ],
-            pozo: [{ lat: -32.0160394, lng: -62.9208078 },{ lat: -32.02297, lng: -62.92059 },
+            pozo: [
+                { lat: -32.0160394, lng: -62.9208078 },
+                { lat: -32.02297, lng: -62.92059 },
             ],
-            rio_cuarto: [{ lat: -33.1376, lng: -64.35924 },{ lat: -33.10934, lng: -64.37887 },{ lat: -33.14268, lng: -64.38331 },{ lat: -33.15824, lng: -64.36292 },
+            rio_cuarto: [
+                { lat: -33.1376, lng: -64.35924 },
+                { lat: -33.10934, lng: -64.37887 },
+                { lat: -33.14268, lng: -64.38331 },
+                { lat: -33.15824, lng: -64.36292 },
             ],
-            rio_tercero: [{ lat: -32.17740292814756, lng: -64.12554730104105 },{ lat: -32.17032, lng: -64.11738 },{ lat: -32.184536, lng: -64.1440268 }
+            rio_tercero: [
+                { lat: -32.17740292814756, lng: -64.12554730104105 },
+                { lat: -32.17032, lng: -64.11738 },
+                { lat: -32.184536, lng: -64.1440268 }
             ],
             sacanta: { lat: -31.66402, lng: -63.06179 },
             san_agustin: { lat: -31.98166, lng: -64.37399 },
             san_basilio: { lat: -33.49249, lng: -64.3149 },
-            san_francisco: [{ lat: -31.41654, lng: -62.08233 },{ lat: -31.41705, lng: -62.08918 },
+            san_francisco: [
+                { lat: -31.41654, lng: -62.08233 },
+                { lat: -31.41705, lng: -62.08918 },
             ],
             san_jose_de_la_dormida: { lat: -30.35035, lng: -63.9404 },
-            san_marcos_sud: [{ lat: -32.164973227543136, lng: -63.46113204790815 },{ lat: -32.164973227543136, lng: -63.46113204790815 },
+            san_marcos_sud: [
+                { lat: -32.164973227543136, lng: -63.46113204790815 },
+                { lat: -32.164973227543136, lng: -63.46113204790815 },
             ],
             santa: { lat: -32.164973227543136, lng: -63.46113204790815 },
             serrano: { lat: -34.47649, lng: -63.53278 },
@@ -259,201 +332,251 @@
             ticino: { lat: -32.6901446, lng: -63.4365412 },
             transito: { lat: -31.42474, lng: -63.19453 },
             uchacha: { lat: -33.03382, lng: -63.51111 },
-            vicuna_mackenna: [{ lat: -33.92198426225004, lng: -64.39199100600898 },{ lat: -33.92515, lng: -64.39971 },
+            vicuna_mackenna: [
+                    { lat: -33.92198426225004, lng: -64.39199100600898 },
+                    { lat: -33.92515, lng: -64.39971 },
             ],
             villa_cura: { lat: -31.71213, lng: -65.01462 },
-            villa_del_rosario: [{ lat: -31.56207, lng: -63.54063 },{ lat: -31.56412, lng: -63.52891 },{ lat: -31.5659439959763, lng: -63.527111532703 },{ lat: -31.559126733669252, lng: -63.541230504156964 },
+            villa_del_rosario: [
+                { lat: -31.56207, lng: -63.54063 },
+                { lat: -31.56412, lng: -63.52891 },
+                { lat: -31.5659439959763, lng: -63.527111532703 },
+                { lat: -31.559126733669252, lng: -63.541230504156964 },
             ],
             villa_dolores: { lat: -31.94599, lng: -65.20223 },
-            villa_maria: [{ lat: -32.41606, lng: -63.23422 },{ lat: -32.444092269761846, lng: -63.24285486304802 },{ lat: -32.43426953614085, lng: -63.18071968812191 },{ lat: -32.39568, lng: -63.25891 },{ lat: -32.3777763, lng: -63.2145994 },
+            villa_maria: [
+                { lat: -32.41606, lng: -63.23422 },
+                { lat: -32.444092269761846, lng: -63.24285486304802 },
+                { lat: -32.43426953614085, lng: -63.18071968812191 },
+                { lat: -32.39568, lng: -63.25891 },
+                { lat: -32.3777763, lng: -63.2145994 },
             ],
             villa_maria_de_rio_seco: { lat: -29.90011923095804, lng: -63.719878333335615 },
             villa_nueva: { lat: -32.444092269761846, lng: -63.24285486304802 },
+
         };
+
         let map = L.map('map', {
-            scrollWheelZoom: false
+            scrollWheelZoom: false // Desactiva el zoom con la rueda del ratón
         }).setView(locations.rio_primero, 14);
+
+        // Cargar el mapa de OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+        // Inicializar el marcador
         let marker = L.marker(locations.rio_primero).addTo(map);
+
+        // Función para cambiar la ubicación del marcador y el centro del mapa
         function changeLocation(location) {
             const selectedLocation = locations[location];
+
             if (location === "cordoba") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 12);
+                map.setView(selectedLocation[0], 12); // Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "general") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 12);
+                map.setView(selectedLocation[0], 12); // Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "hernando") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 14);
+                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENORZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "jesus_maria") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 12);
+                map.setView(selectedLocation[0], 12);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "justiniano") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 14);
+                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "laboulaye") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "leones") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 14);
+                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "los_surgentes") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 15);
+                map.setView(selectedLocation[0], 15);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "marcos_juarez") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "mattaldi") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "monte_cristo") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "monte_maiz") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "morteros") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "oncativo") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "pilar") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "portena") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "pozo") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "rio_cuarto") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 12);
-            }           
+                map.setView(selectedLocation[0], 12);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
+            }
+            
             else if (location === "rio_tercero") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "rio_francisco") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 14);
+                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "vicuna_mackenna") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 14);
+                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "villa_del_rosario") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 14);
+                map.setView(selectedLocation[0], 14);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else if (location === "villa_maria") {
                 selectedLocation.forEach(coord => {
                     L.marker(coord).addTo(map);
                 });
-                map.setView(selectedLocation[0], 13);
+                map.setView(selectedLocation[0], 13);  // RANGO 1-18 DONDE 1 ES EL MENOR ZOOM Cambiar vista al primer punto con un zoom más lejano
             }
+
             else {
-                map.setView(selectedLocation, 14);
-                marker.setLatLng(selectedLocation);
+                // En otras ubicaciones, solo cambia un marcador
+                map.setView(selectedLocation, 14); // Cambia el centro y el zoom del mapa a un zoom más cercano
+                marker.setLatLng(selectedLocation); // Cambia la posición del marcador
             }
         }
+
+        // Evento para cambiar la sucursal al seleccionar una opción
         document.getElementById("sucursalSelect").addEventListener("change", function() {
             const selectedValue = this.value;
             changeLocation(selectedValue);
         });
-        // Agregar el mapa base
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-            // Escuchar clic en el mapa para obtener latitud y longitud
-            map.on('click', function(event) {
-                const lat = event.latlng.lat;
-                const lng = event.latlng.lng;
-    
-                // Mostrar la información en el modal
-                document.getElementById('lat').textContent = lat;
-                document.getElementById('lng').textContent = lng;
-    
-                // Abrir el modal con la información
-                openModal();
-            });
-            // Función para abrir el modal
-            function openModal() {
-                document.getElementById('modal').style.display = 'block';
+
+        console.table(locations);
+        // Agregar marcadores al mapa y almacenarlos
+        const markers = {}; // Un objeto para almacenar los marcadores
+        Object.keys(locations).forEach(locationKey => {
+            const location = locations[locationKey];
+            const marker = L.marker([location.lat, location.lng]).addTo(map);
+            marker._id = locationKey; // Guardamos un identificador para cada marcador
+
+            // Agregar la clase personalizada
+            marker._icon.classList.add('leaflet-marker-icon', 'leaflet-zoom-animated', 'leaflet-interactive');
+
+            // Asociar la información que se mostrará al hacer clic usando la variable 'sucursal'
+            marker.bindPopup(location.sucursal);
+            
+            // Almacenar el marcador en el objeto
+            markers[locationKey] = marker;
+        });
+
+        // Funcionalidad para que al hacer clic en el select se muestre la ubicación correspondiente
+        document.getElementById('ubicaciones').addEventListener('change', function () {
+            const selectedOption = this.value; // Obtener el valor seleccionado
+            const selectedLocation = locations[selectedOption];
+            
+            if (selectedLocation) {
+                // Mover el mapa a la ubicación seleccionada
+                map.setView([selectedLocation.lat, selectedLocation.lng], 13);
+
+                // Mostrar el popup de la ubicación seleccionada
+                const selectedMarker = markers[selectedOption]; // Obtener el marcador de la ubicación seleccionada
+                selectedMarker.openPopup(); // Abrir el popup del marcador seleccionado
             }
-            // Función para cerrar el modal
-            function closeModal() {
-                document.getElementById('modal').style.display = 'none';
-            }
-            // Detectar el cambio en el select y cerrar el modal
-                document.getElementById('sucursalSelect').addEventListener('change', function() {
-            // Si se cambia la selección, cerramos el modal automáticamente
-            closeModal();
         });
     </script>
 </body>
